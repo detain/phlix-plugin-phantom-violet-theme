@@ -1,0 +1,39 @@
+{
+    "name": "detain/phlix-plugin-phantom-violet-theme",
+    "type": "phlix-plugin",
+    "description": "Phantom Violet ui-theme plugin for Phlix — a deep violet accent theme with rich purple atmosphere.",
+    "license": "MIT",
+    "keywords": ["phlix", "phlix-plugin", "phlix-theme", "ui-theme", "theme", "phantom-violet", "phantom-violet-theme", "violet", "purple", "dark-theme"],
+    "homepage": "https://github.com/detain/phlix-plugin-phantom-violet-theme",
+    "require": {
+        "php": ">=8.3",
+        "detain/phlix-shared": "^0.21",
+        "psr/container": "^1.1 || ^2.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.2",
+        "phpunit/phpunit": "^10.0",
+        "squizlabs/php_codesniffer": "^4.0"
+    },
+    "repositories": [
+        { "type": "vcs", "url": "https://github.com/detain/phlix-shared.git" }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Phlix\\PhantomViolet\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Phlix\\PhantomViolet\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "scripts": {
+        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
+        "phpcs": "vendor/bin/phpcs --standard=phpcs.xml"
+    }
+}

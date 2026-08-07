@@ -1,0 +1,22 @@
+# Dependencies
+/vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.log
+
+# Composer
+composer.phar
+
+# Testing
+.phpunit.result.cache
+coverage/
