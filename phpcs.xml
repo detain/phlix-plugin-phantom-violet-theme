@@ -1,36 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="Phlix Phantom Violet Plugin Coding Standard">
-    <description>PHP CodeSniffer rules for the Phantom Violet theme plugin</description>
-
+<ruleset name="Phlix Theme Plugin">
+    <description>PSR-12 coding standard</description>
     <file>src</file>
     <file>tests</file>
-
-    <exclude-pattern>vendor/*</exclude-pattern>
-    <exclude-pattern>dev-stubs/*</exclude-pattern>
-
-    <rule ref="PSR12">
-        <exclude name="PSR12.Properties.ConstantVisibility.NotFound"/>
-    </rule>
-
-    <rule ref="Squiz.Arrays.ArrayDeclaration">
-        <properties>
-            <property name="allowSingleLine" value="false"/>
-        </properties>
-    </rule>
-
-    <rule ref="Squiz.Functions.FunctionDeclaration">
-        <properties>
-            <property name="closureFunctionArguments" value="false"/>
-        </properties>
-    </rule>
-
-    <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing">
-        <properties>
-            <property name="equalsSpacing" value="1"/>
-        </properties>
-    </rule>
-
-    <property name="tabWidth" value="4"/>
-    <property name="indent" value="4"/>
-    <property name="lineWidth" value="120"/>
+    <file>dev-stubs</file>
+    <exclude-pattern>vendor/</exclude-pattern>
+    <rule ref="PSR12"/>
 </ruleset>
