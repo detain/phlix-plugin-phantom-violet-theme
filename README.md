@@ -15,7 +15,7 @@ The Phantom Violet theme extends the built-in `midnight` base and contributes a 
 | `--accent-active` | `#8b5cf6` | Active/pressed state |
 | `--accent-soft` | `rgba(167, 139, 250, 0.12)` | Soft background |
 | `--accent-ring` | `rgba(167, 139, 250, 0.45)` | Focus rings |
-| `--accent-text` | `#1a1625` | Text on accent |
+| `--accent-text` | `#f5f3ff` | Text on accent |
 
 ### Background & Surface
 
@@ -70,6 +70,9 @@ composer require detain/phlix-plugin-phantom-violet-theme
 ```bash
 # Install dependencies
 composer install
+
+# Run PHPUnit tests
+vendor/bin/phpunit
 
 # Run PHPStan static analysis
 composer phpstan
