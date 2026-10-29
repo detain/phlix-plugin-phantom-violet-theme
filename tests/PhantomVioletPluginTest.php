@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Tests for the Phantom Violet ui-theme plugin.
+ *
+ * @copyright 2026 Joe Huss <detain@interserver.net>
+ * @license   MIT
+ */
+
 declare(strict_types=1);
 
 namespace Phlix\PhantomViolet\Tests;
@@ -43,7 +50,6 @@ final class PhantomVioletPluginTest extends TestCase
     {
         $themes = $this->plugin->providedThemes();
 
-        $this->assertIsArray($themes);
         $this->assertNotEmpty($themes, 'Plugin must provide at least one theme');
 
         $theme = $themes[0];
@@ -60,6 +66,7 @@ final class PhantomVioletPluginTest extends TestCase
         $themes = $this->plugin->providedThemes();
         $theme = $themes[0];
         $tokens = $theme['tokens'];
+        $this->assertIsArray($tokens, 'Theme must carry a tokens array');
 
         $forbidden = ['var(', 'url(', '/*', ';', '}', '{', '\\', "\n", "\t"];
 
@@ -82,22 +89,21 @@ final class PhantomVioletPluginTest extends TestCase
     {
         $container = $this->createMock(\Psr\Container\ContainerInterface::class);
 
+        $this->expectNotToPerformAssertions();
         $this->plugin->onEnable($container);
-        $this->assertTrue(true);
     }
 
     #[Test]
     public function testOnDisableDoesNotThrow(): void
     {
+        $this->expectNotToPerformAssertions();
         $this->plugin->onDisable();
-        $this->assertTrue(true);
     }
 
     #[Test]
     public function testSubscribedEventsReturnsEmptyArray(): void
     {
         $events = $this->plugin->subscribedEvents();
-        $this->assertIsArray($events);
         $this->assertEmpty($events);
     }
 }
