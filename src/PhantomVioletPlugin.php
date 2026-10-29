@@ -113,8 +113,8 @@ final class PhantomVioletPlugin implements LifecycleInterface, ThemeSourceInterf
                     // Text ramp — cool lavender whites
                     '--text' => '#e8e4f0',
                     '--text-muted' => '#a8a0b8',
-                    '--text-subtle' => '#6e6578',
-                    '--text-faint' => '#3d3548',
+                    '--text-subtle' => '#978aa3',
+                    '--text-faint' => '#7c6f87',
                     '--text-on-accent' => '#0f0d14',
 
                     // Borders — subtle purple-tinted

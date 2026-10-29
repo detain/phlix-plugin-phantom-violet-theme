@@ -34,8 +34,8 @@ The Phantom Violet theme extends the built-in `midnight` base and contributes a 
 |-------|-----|-------|
 | `--text` | `#e8e4f0` | Primary text |
 | `--text-muted` | `#a8a0b8` | Secondary text |
-| `--text-subtle` | `#6e6578` | Tertiary text |
-| `--text-faint` | `#3d3548` | Disabled/hint text |
+| `--text-subtle` | `#978aa3` | Tertiary text (AA ≥4.5:1 on every surface) |
+| `--text-faint` | `#7c6f87` | Disabled/hint text (≥3:1 on every surface) |
 | `--text-on-accent` | `#0f0d14` | Text on accent |
 
 ### Borders
