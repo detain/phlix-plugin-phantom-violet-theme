@@ -61,9 +61,33 @@ The Phantom Violet theme extends the built-in `midnight` base and contributes a 
 
 ## Installation
 
+The server installs plugins from the **catalog** (`plugins.json`): a release
+entry pins an exact commit (`ref`) and the sha256 of its tarball
+(`artifactSha256`), and the loader verifies those bytes before extracting
+anything — without a pin `PluginLoader::install()` refuses outright.
+
+**Admin UI** — *Admin → Plugins*, find **Phantom Violet Theme**, press
+**Install**, then flip its switch: a fresh install lands **disabled**
+(`phlix-docs/docs/plugins/install-from-catalog.md`).
+
+**CLI** — from the server root, pass the repository **URL**, not the bare name
+(only the URL is rewritten to the pinned archive):
+
 ```bash
-composer require detain/phlix-plugin-phantom-violet-theme
+php bin/phlix plugin:install https://github.com/detain/phlix-plugin-phantom-violet-theme
+php bin/phlix plugin:enable  phlix-plugin-phantom-violet-theme
+php bin/phlix plugin:list
 ```
+
+**Then pick it** — enabling registers `phantom-violet` as a theme source and a
+`ui-theme` applies immediately on enable; *Settings → Appearance* then shows
+the Phantom Violet swatch. If the swatch is missing, `plugin:list` tells you
+whether the plugin is installed-but-disabled or was never registered.
+
+`composer require` in the server root is **not** an install route: the loader
+unpacks catalog artifacts into `var/plugins/phlix-plugin-phantom-violet-theme/`
+(manifest `name`) with a per-plugin vendor and writes the `plugins` table — a
+root-level composer require does none of that, and the theme never appears.
 
 ## Development
 
