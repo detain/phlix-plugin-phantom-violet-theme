@@ -132,6 +132,97 @@ final class TokenContrastTest extends TestCase
         }
     }
 
+    #[Test]
+    public function testAccentRingMeetsNonTextMinimumUnderEveryAdjacency(): void
+    {
+        $ring = $this->parseRgba($this->token('--accent-ring'));
+
+        $grounds = [];
+        foreach ($this->grounds() as $name => $hex) {
+            $grounds[$name] = $this->parseHex($hex);
+        }
+
+        foreach ($grounds as $onName => $paintedOn) {
+            $painted = $this->compositeOver($ring, $paintedOn);
+            foreach ($grounds as $adjName => $adjacent) {
+                $ratio = $this->contrastRatioRgb($painted, $adjacent);
+                $this->assertGreaterThanOrEqual(
+                    self::NON_TEXT_RATIO,
+                    $ratio,
+                    sprintf(
+                        '--accent-ring painted on %s is %s vs adjacent %s: %.2f:1 — below the 3:1 non-text minimum',
+                        $onName,
+                        $this->toHex($painted),
+                        $adjName,
+                        $ratio
+                    )
+                );
+            }
+        }
+    }
+
+    /**
+     * @return array{int, int, int, float}
+     */
+    private function parseRgba(string $value): array
+    {
+        $matches = [];
+        if (
+            preg_match('/^rgba\((\d{1,3}), (\d{1,3}), (\d{1,3}), (0?\.\d+|1|0)\)$/', $value, $matches)
+            !== 1
+        ) {
+            throw new RuntimeException("Contrast law expects literal rgba(r, g, b, a), got '$value'");
+        }
+
+        return [
+            (int) $matches[1],
+            (int) $matches[2],
+            (int) $matches[3],
+            (float) $matches[4],
+        ];
+    }
+
+    /**
+     * 8-bit source-over compositing of an rgba token onto an opaque ground.
+     *
+     * @param array{int, int, int, float} $rgba
+     * @param array{int, int, int}        $ground
+     *
+     * @return array{int, int, int}
+     */
+    private function compositeOver(array $rgba, array $ground): array
+    {
+        [$r, $g, $b, $alpha] = $rgba;
+
+        return [
+            (int) round($alpha * $r + (1 - $alpha) * $ground[0]),
+            (int) round($alpha * $g + (1 - $alpha) * $ground[1]),
+            (int) round($alpha * $b + (1 - $alpha) * $ground[2]),
+        ];
+    }
+
+    /**
+     * @param array{int, int, int} $rgb
+     */
+    private function toHex(array $rgb): string
+    {
+        return sprintf('#%02x%02x%02x', $rgb[0], $rgb[1], $rgb[2]);
+    }
+
+    /**
+     * @param array{int, int, int} $rgbA
+     * @param array{int, int, int} $rgbB
+     */
+    private function contrastRatioRgb(array $rgbA, array $rgbB): float
+    {
+        $luminanceA = $this->relativeLuminance($rgbA);
+        $luminanceB = $this->relativeLuminance($rgbB);
+        $brighter = max($luminanceA, $luminanceB);
+        $darker = min($luminanceA, $luminanceB);
+
+        return ($brighter + 0.05) / ($darker + 0.05);
+    }
+
     /**
      * @return array{int, int, int}
      */
@@ -169,11 +260,6 @@ final class TokenContrastTest extends TestCase
 
     private function contrastRatio(string $hexA, string $hexB): float
     {
-        $luminanceA = $this->relativeLuminance($this->parseHex($hexA));
-        $luminanceB = $this->relativeLuminance($this->parseHex($hexB));
-        $brighter = max($luminanceA, $luminanceB);
-        $darker = min($luminanceA, $luminanceB);
-
-        return ($brighter + 0.05) / ($darker + 0.05);
+        return $this->contrastRatioRgb($this->parseHex($hexA), $this->parseHex($hexB));
     }
 }

@@ -99,7 +99,7 @@ final class PhantomVioletPlugin implements LifecycleInterface, ThemeSourceInterf
                     '--accent-hover' => '#c4b5fd',
                     '--accent-active' => '#8b5cf6',
                     '--accent-soft' => 'rgba(167, 139, 250, 0.12)',
-                    '--accent-ring' => 'rgba(167, 139, 250, 0.45)',
+                    '--accent-ring' => 'rgba(167, 139, 250, 0.70)',
                     '--accent-text' => '#f5f3ff',
 
                     // Background + elevation stack — deep purple blacks

@@ -14,7 +14,7 @@ The Phantom Violet theme extends the built-in `midnight` base and contributes a 
 | `--accent-hover` | `#c4b5fd` | Hover state |
 | `--accent-active` | `#8b5cf6` | Active/pressed state |
 | `--accent-soft` | `rgba(167, 139, 250, 0.12)` | Soft background |
-| `--accent-ring` | `rgba(167, 139, 250, 0.45)` | Focus rings |
+| `--accent-ring` | `rgba(167, 139, 250, 0.70)` | Focus rings (≥3:1 non-text on every adjacency) |
 | `--accent-text` | `#f5f3ff` | Text on accent |
 
 ### Background & Surface
