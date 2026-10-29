@@ -1,22 +1,12 @@
-# Dependencies
 /vendor/
+/coverage.xml
+/coverage-report/
+/.phpunit.cache/
+/.phpunit.result.cache
 
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Build artifacts
-*.log
-
-# Composer
-composer.phar
-
-# Testing
-.phpunit.result.cache
-coverage/
+# Per-checkout agent tooling and state — never part of a plugin package.
+.caliber/
+.claude/
+.opencode/
+.remember/
+CALIBER_LEARNINGS.md

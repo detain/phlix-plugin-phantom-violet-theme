@@ -18,8 +18,7 @@
 
     <coverage>
         <report>
-            <clover outputFile="coverage.xml"/>
-            <html outputDirectory="coverage"/>
+            <cobertura outputFile="coverage.xml"/>
         </report>
     </coverage>
 
