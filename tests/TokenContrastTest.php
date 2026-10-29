@@ -161,6 +161,58 @@ final class TokenContrastTest extends TestCase
         }
     }
 
+    #[Test]
+    public function testAccentTextIsTheAccentColorItself(): void
+    {
+        $this->assertSame(
+            $this->token('--accent'),
+            $this->token('--accent-text'),
+            'Contract (phlix-tokens src/css/colors.css): --accent-text is the accent '
+            . 'color AS foreground text/icon — the ink-on-fill role is --text-on-accent'
+        );
+    }
+
+    #[Test]
+    public function testAccentTextMeetsAaAsForegroundOnEveryGround(): void
+    {
+        $ink = $this->token('--accent-text');
+
+        foreach ($this->grounds() as $name => $ground) {
+            $ratio = $this->contrastRatio($ink, $ground);
+            $this->assertGreaterThanOrEqual(
+                self::AA_TEXT_RATIO,
+                $ratio,
+                sprintf(
+                    '--accent-text %s on %s (%s) is %.2f:1 — below the 4.5:1 AA foreground floor',
+                    $ink,
+                    $name,
+                    $ground,
+                    $ratio
+                )
+            );
+        }
+    }
+
+    #[Test]
+    public function testTextOnAccentMeetsAaAsInkOnEveryAccentFill(): void
+    {
+        $ink = $this->token('--text-on-accent');
+
+        foreach (['--accent', '--accent-hover', '--accent-active'] as $fill) {
+            $ratio = $this->contrastRatio($ink, $this->token($fill));
+            $this->assertGreaterThanOrEqual(
+                self::AA_TEXT_RATIO,
+                $ratio,
+                sprintf(
+                    '--text-on-accent %s on %s is %.2f:1 — below the 4.5:1 AA floor',
+                    $ink,
+                    $fill,
+                    $ratio
+                )
+            );
+        }
+    }
+
     /**
      * @return array{int, int, int, float}
      */

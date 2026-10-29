@@ -15,7 +15,7 @@ The Phantom Violet theme extends the built-in `midnight` base and contributes a 
 | `--accent-active` | `#8b5cf6` | Active/pressed state |
 | `--accent-soft` | `rgba(167, 139, 250, 0.12)` | Soft background |
 | `--accent-ring` | `rgba(167, 139, 250, 0.70)` | Focus rings (≥3:1 non-text on every adjacency) |
-| `--accent-text` | `#f5f3ff` | Text on accent |
+| `--accent-text` | `#a78bfa` | Accent color as foreground text/icon (AA ≥4.5:1 on bg/surface) |
 
 ### Background & Surface
 
@@ -36,7 +36,7 @@ The Phantom Violet theme extends the built-in `midnight` base and contributes a 
 | `--text-muted` | `#a8a0b8` | Secondary text |
 | `--text-subtle` | `#978aa3` | Tertiary text (AA ≥4.5:1 on every surface) |
 | `--text-faint` | `#7c6f87` | Disabled/hint text (≥3:1 on every surface) |
-| `--text-on-accent` | `#0f0d14` | Text on accent |
+| `--text-on-accent` | `#0f0d14` | Dark ink on accent fill (AA ≥4.5:1 on all accent fills) |
 
 ### Borders
 
