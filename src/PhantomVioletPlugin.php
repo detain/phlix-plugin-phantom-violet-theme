@@ -29,7 +29,8 @@ use Psr\Container\ContainerInterface;
  * - Deep, rich purple surfaces that create depth
  * - Ambient violet glow effects for atmosphere
  * - Subtle grain texture for visual interest
- * - Strong vignette effect for focus
+ * - Violet edge tint (`--vignette`) for atmosphere — a 25 % purple wash
+ *   that composites *lighter* than the near-black base, not a darkening
  *
  * @package Phlix\PhantomViolet
  * @since 1.0.0
@@ -64,7 +65,7 @@ final class PhantomVioletPlugin implements LifecycleInterface, ThemeSourceInterf
     /**
      * A theme plugin subscribes to no events.
      *
-     * @return array<class-string, string> Always empty.
+     * @return array<class-string, string|callable> Always empty.
      */
     public function subscribedEvents(): array
     {

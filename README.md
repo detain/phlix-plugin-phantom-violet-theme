@@ -38,6 +38,18 @@ The Phantom Violet theme extends the built-in `midnight` base and contributes a 
 | `--text-faint` | `#7c6f87` | Disabled/hint text (≥3:1 on every surface) |
 | `--text-on-accent` | `#0f0d14` | Dark ink on accent fill (AA ≥4.5:1 on all accent fills) |
 
+#### On-accent ink duality (known limitation)
+
+`--text-on-accent` governs only the ~10 accent-fill sites a theme owns.
+Other on-accent labels — the MediaCard NEW badge and ~25 further sites —
+are painted with the host's structural `--accent-contrast` (`#2a1804`,
+warm), which is not in the theme-overridable token allowlist, so no
+plugin theme can retint it. A violet fill therefore carries two
+near-blacks, warm and cool, side by side. Both instantiated pairings pass
+AA: 6.27:1 / 9.24:1 for the structural ink on `--accent` /
+`--accent-hover`, and 7.09:1 / 10.46:1 / 4.56:1 for this theme's ink —
+the last on the pressed `--accent-active`, a documented thin margin.
+
 ### Borders
 
 | Token | Hex | Usage |
@@ -51,7 +63,7 @@ The Phantom Violet theme extends the built-in `midnight` base and contributes a 
 | Token | Value | Usage |
 |-------|-------|-------|
 | `--grain-opacity` | `0.03` | Film grain overlay |
-| `--vignette` | `rgba(139, 92, 246, 0.25)` | Edge darkening |
+| `--vignette` | `rgba(139, 92, 246, 0.25)` | Edge tint — a violet wash that composites lighter over `--bg` (not a darkening) |
 | `--ambient` | `rgba(167, 139, 250, 0.18)` | Ambient glow |
 
 ## Requirements
