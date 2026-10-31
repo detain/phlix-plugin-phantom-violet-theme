@@ -83,6 +83,33 @@ field:
 | `--color-text-muted` | `#a8a0b8` | `--text-muted` |
 | `--color-border` | `#2a2438` | `--border` |
 
+#### Inherited `midnight` families (known limitation)
+
+The theme overrides the accent, surface, text, border and atmosphere ramps but
+leaves the semantic states (`--error`/`--success`/`--warning`/`--info` plus
+their `-bg` pairs) and every other `--color-*` alias to the `midnight` base,
+so midnight's amber/brown hues sit inside the violet field. Measured against
+*this* theme's grounds (recomputed on the shipped palette): `--error` 4.72:1
+(thin AA margin on `--surface-3`), `--info` 5.95:1, `--success` 6.85:1,
+`--warning` 7.18:1 — all AA text, but the warning amber and the violet accent
+read as a similar-weight, different-hue pair (`L` 0.44 vs 0.34).
+
+Consumers of the unset aliases, by the same `var()` census: one is live in the
+shipped SPA — `--color-text-secondary` (eight sites in `SyncPlayPage`,
+`ParentalControlsPage` and `UpdateAvailableBanner`) — and resolves to
+midnight's warm `#a99d8c` (5.81:1 on the worst violet ground) beside the
+theme's own cool `--text-muted` `#a8a0b8`. The remaining unset aliases
+(`--color-primary*`, `--color-surface-hover/-elevated/-active`,
+`--color-text-subtle`, `--color-border-subtle`, the state `--color-*` pairs)
+have no SPA readers; their exposure is on the wire — `GET /api/v1/themes`
+emits the fully resolved (`extends`-flattened) map, so external and
+third-party consumers see e.g. `--color-surface-hover: #141009` (warm) next
+to `--surface-2: #1a1725` (violet) under one theme.
+
+Harmonizing these hues — setting the states and aliases in the shipped map —
+is a token-value change deliberately left to the theme owner; this section
+documents the seam rather than shipping the move.
+
 ## Requirements
 
 - PHP >= 8.3
