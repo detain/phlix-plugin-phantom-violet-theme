@@ -3,6 +3,7 @@ parameters:
     paths:
         - src
         - tests
+        - scripts
     # `Phlix\Theming\ThemeSourceInterface` is declared by the HOST server, not by
     # any Composer dependency, so PHPStan cannot find it in `vendor/`. It must be
     # INTRODUCED (scanDirectories), not overridden (stubFiles) — `stubFiles` only
