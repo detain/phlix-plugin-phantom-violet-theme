@@ -66,6 +66,23 @@ the last on the pressed `--accent-active`, a documented thin margin.
 | `--vignette` | `rgba(139, 92, 246, 0.25)` | Edge tint — a violet wash that composites lighter over `--bg` (not a darkening) |
 | `--ambient` | `rgba(167, 139, 250, 0.18)` | Ambient glow |
 
+### Legacy `--color-*` aliases
+
+Components that have not migrated to the modern token names still read the
+old `--color-*` aliases, so the theme ships the five the shipped SPA actually
+consumes (a `var(--color-…)` census over `phlix-ui/src` finds live readers for
+each — `--color-border` and `--color-surface` the busiest). Every one mirrors
+its modern counterpart 1:1, keeping un-migrated surfaces inside the violet
+field:
+
+| Token | Hex | Mirrors |
+|-------|-----|---------|
+| `--color-bg` | `#08070d` | `--bg` |
+| `--color-surface` | `#100e17` | `--surface` |
+| `--color-text` | `#e8e4f0` | `--text` |
+| `--color-text-muted` | `#a8a0b8` | `--text-muted` |
+| `--color-border` | `#2a2438` | `--border` |
+
 ## Requirements
 
 - PHP >= 8.3

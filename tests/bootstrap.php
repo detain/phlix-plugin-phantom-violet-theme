@@ -10,8 +10,6 @@
 declare(strict_types=1);
 
 /**
- * Test bootstrap for the plugin's own PHPUnit suite.
- *
  * A theme plugin's runtime depends on TWO host contracts:
  *
  *  - `Phlix\Shared\Plugin\LifecycleInterface` — published in
