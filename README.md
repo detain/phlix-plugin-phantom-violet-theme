@@ -69,11 +69,16 @@ the last on the pressed `--accent-active`, a documented thin margin.
 ### Legacy `--color-*` aliases
 
 Components that have not migrated to the modern token names still read the
-old `--color-*` aliases, so the theme ships the five the shipped SPA actually
-consumes (a `var(--color-…)` census over `phlix-ui/src` finds live readers for
-each — `--color-border` and `--color-surface` the busiest). Every one mirrors
-its modern counterpart 1:1, keeping un-migrated surfaces inside the violet
-field:
+old `--color-*` aliases, so the theme mirrors five of the twenty-two aliases
+`midnight` declares: `--color-bg` (4 reads), `--color-surface` (11),
+`--color-text` (2), `--color-text-muted` (7), `--color-border` (13) — a
+`var(--color-…)` census over the shipped `phlix-ui` components finds live
+readers for each, `--color-border` and `--color-surface` the busiest (read
+counts measured 2026-11-06 at `phlix-ui` origin/master `eb9e991c`). The ship
+set is deliberately not the consumed set: five further aliases have live SPA
+readers and stay midnight's — see the inherited-families section below.
+Every one of the five mirrors its modern counterpart 1:1, keeping
+un-migrated surfaces inside the violet field:
 
 | Token | Hex | Mirrors |
 |-------|-----|---------|
@@ -94,14 +99,20 @@ so midnight's amber/brown hues sit inside the violet field. Measured against
 `--warning` 7.18:1 — all AA text, but the warning amber and the violet accent
 read as a similar-weight, different-hue pair (`L` 0.44 vs 0.34).
 
-Consumers of the unset aliases, by the same `var()` census: one is live in the
-shipped SPA — `--color-text-secondary` (eight sites in `SyncPlayPage`,
-`ParentalControlsPage` and `UpdateAvailableBanner`) — and resolves to
-midnight's warm `#a99d8c` (5.81:1 on the worst violet ground) beside the
-theme's own cool `--text-muted` `#a8a0b8`. The remaining unset aliases
-(`--color-primary*`, `--color-surface-hover/-elevated/-active`,
-`--color-text-subtle`, `--color-border-subtle`, the state `--color-*` pairs)
-have no SPA readers; their exposure on the wire is `midnight`'s OWN entry —
+Consumers of the unset aliases, by the same `var()` census: five of the
+seventeen have live readers in the shipped SPA. `--color-text-secondary`
+(eight sites in `SyncPlayPage`, `ParentalControlsPage` and
+`UpdateAvailableBanner`) resolves to midnight's warm `#a99d8c` (5.81:1 on
+the worst violet ground) beside the theme's own cool `--text-muted`
+`#a8a0b8`; and the four non-`-bg` state aliases read at five more sites —
+`--color-error` twice in `ParentalControlsPage`, `--color-success`,
+`--color-warning` and `--color-info` once each in `SyncPlayPage` — so
+midnight's state hues are exposed in the SPA itself, not only on the wire;
+they carry the identical values measured AA above. Only the remaining
+twelve are truly unread in the SPA (`--color-primary/-hover/-active`,
+`--color-surface-hover/-elevated/-active`, `--color-text-subtle`,
+`--color-border-subtle` and the four `-bg` state pairs); their exposure is
+on the wire as `midnight`'s OWN entry —
 `GET /api/v1/themes` emits each theme's declared token map, not an
 `extends`-flattened one: the `phantom-violet` entry carries the 28 tokens
 above and none of these aliases, while `midnight` lists beside it with
@@ -111,6 +122,11 @@ materializes only in a client that performs the documented layering —
 the server ships every base it knows in the same response, so the list is
 self-sufficient for that, but deliberately never publishes a flattened view:
 one theme, one source of truth.
+
+The five live-reader counts above re-measure 2026-11-06 at the same `phlix-ui`
+pin as the stamped set; `midnight`'s twenty-two-alias declaration and the
+quoted wire hexes measure 2026-11-06 at `phlix-server` origin/master
+`a63dc0db`.
 
 Harmonizing these hues — setting the states and aliases in the shipped map —
 is a token-value change deliberately left to the theme owner; this section
