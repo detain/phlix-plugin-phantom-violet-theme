@@ -101,10 +101,16 @@ midnight's warm `#a99d8c` (5.81:1 on the worst violet ground) beside the
 theme's own cool `--text-muted` `#a8a0b8`. The remaining unset aliases
 (`--color-primary*`, `--color-surface-hover/-elevated/-active`,
 `--color-text-subtle`, `--color-border-subtle`, the state `--color-*` pairs)
-have no SPA readers; their exposure is on the wire — `GET /api/v1/themes`
-emits the fully resolved (`extends`-flattened) map, so external and
-third-party consumers see e.g. `--color-surface-hover: #141009` (warm) next
-to `--surface-2: #1a1725` (violet) under one theme.
+have no SPA readers; their exposure on the wire is `midnight`'s OWN entry —
+`GET /api/v1/themes` emits each theme's declared token map, not an
+`extends`-flattened one: the `phantom-violet` entry carries the 28 tokens
+above and none of these aliases, while `midnight` lists beside it with
+`--color-surface-hover: #141009` (warm). The warm-against-violet pairing
+(that `#141009` under this theme's `--surface-2: #1a1725`) therefore
+materializes only in a client that performs the documented layering —
+the server ships every base it knows in the same response, so the list is
+self-sufficient for that, but deliberately never publishes a flattened view:
+one theme, one source of truth.
 
 Harmonizing these hues — setting the states and aliases in the shipped map —
 is a token-value change deliberately left to the theme owner; this section
