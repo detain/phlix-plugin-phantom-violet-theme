@@ -29,7 +29,7 @@ use Psr\Container\ContainerInterface;
  * - Deep, rich purple surfaces that create depth
  * - Ambient violet glow effects for atmosphere
  * - Subtle grain texture for visual interest
- * - Violet edge tint (`--vignette`) for atmosphere — a 25 % purple wash
+ * - Violet edge tint (`--vignette`) for atmosphere — a 25% purple wash
  *   that composites *lighter* than the near-black base, not a darkening
  *
  * @package Phlix\PhantomViolet

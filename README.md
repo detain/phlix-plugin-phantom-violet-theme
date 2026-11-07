@@ -38,7 +38,7 @@ The Phantom Violet theme extends the built-in `midnight` base and contributes a 
 | `--text-faint` | `#7c6f87` | Disabled/hint text (≥3:1 on every surface) |
 | `--text-on-accent` | `#0f0d14` | Dark ink on accent fill (AA ≥4.5:1 on all accent fills) |
 
-#### On-accent ink duality (known limitation)
+#### On-Acccent Ink Duality (Known Limitation)
 
 `--text-on-accent` governs only the ~10 accent-fill sites a theme owns.
 Other on-accent labels — the MediaCard NEW badge and ~25 further sites —
@@ -66,7 +66,7 @@ the last on the pressed `--accent-active`, a documented thin margin.
 | `--vignette` | `rgba(139, 92, 246, 0.25)` | Edge tint — a violet wash that composites lighter over `--bg` (not a darkening) |
 | `--ambient` | `rgba(167, 139, 250, 0.18)` | Ambient glow |
 
-### Legacy `--color-*` aliases
+### Legacy `--color-*` Aliases
 
 Components that have not migrated to the modern token names still read the
 old `--color-*` aliases, so the theme mirrors five of the twenty-two aliases
@@ -88,7 +88,7 @@ un-migrated surfaces inside the violet field:
 | `--color-text-muted` | `#a8a0b8` | `--text-muted` |
 | `--color-border` | `#2a2438` | `--border` |
 
-#### Inherited `midnight` families (known limitation)
+#### Inherited `midnight` Families (Known Limitation)
 
 The theme overrides the accent, surface, text, border and atmosphere ramps but
 leaves the semantic states (`--error`/`--success`/`--warning`/`--info` plus
@@ -185,4 +185,4 @@ composer phpcs
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
+MIT License — see [LICENSE](LICENSE) for details.
