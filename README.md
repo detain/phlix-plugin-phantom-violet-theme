@@ -14,7 +14,7 @@ The Phantom Violet theme extends the built-in `midnight` base and contributes a 
 | `--accent-hover` | `#c4b5fd` | Hover state |
 | `--accent-active` | `#8b5cf6` | Active/pressed state |
 | `--accent-soft` | `rgba(167, 139, 250, 0.12)` | Soft background |
-| `--accent-ring` | `rgba(167, 139, 250, 0.70)` | Focus rings (≥3:1 non-text on every adjacency) |
+| `--accent-ring` | `rgba(167, 139, 250, 0.70)` | Focus rings (≥3:1 non-text on every adjacency; floor 3.11:1 — painted on `--bg` beside `--surface-3`, a documented thin margin) |
 | `--accent-text` | `#a78bfa` | Accent color as foreground text/icon (AA ≥4.5:1 on bg/surface) |
 
 ### Background & Surface
@@ -157,10 +157,12 @@ php bin/phlix plugin:enable  phlix-plugin-phantom-violet-theme
 php bin/phlix plugin:list
 ```
 
-**Then pick it** — enabling registers `phantom-violet` as a theme source and a
-`ui-theme` applies immediately on enable; *Settings → Appearance* then shows
-the Phantom Violet swatch. If the swatch is missing, `plugin:list` tells you
-whether the plugin is installed-but-disabled or was never registered.
+**Then pick it** — enabling registers `phantom-violet` as a theme source: the
+theme becomes *available* immediately, not *active*. Nothing repaints on
+enable; *Settings → Appearance* then shows the Phantom Violet swatch, and each
+user who picks it gets it (theme choice is a per-user preference). If the
+swatch is missing, `plugin:list` tells you whether the plugin is
+installed-but-disabled or was never registered.
 
 `composer require` in the server root is **not** an install route: the loader
 unpacks catalog artifacts into `var/plugins/phlix-plugin-phantom-violet-theme/`

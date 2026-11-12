@@ -111,12 +111,19 @@ final class TokenContrastTest extends TestCase
         }
     }
 
+    /**
+     * The full text ramp is strictly ordered on every ground:
+     * faint < subtle < muted < --text. The top rung pins `--text` itself, so a
+     * primary-ink edit that sinks it to (or below) the secondary tier fails
+     * here instead of shipping a ramp with no primary step.
+     */
     #[Test]
-    public function testRampKeepsFaintBelowSubtleBelowMutedOnEveryGround(): void
+    public function testRampKeepsFaintBelowSubtleBelowMutedBelowTextOnEveryGround(): void
     {
         $faint = $this->token('--text-faint');
         $subtle = $this->token('--text-subtle');
         $muted = $this->token('--text-muted');
+        $text = $this->token('--text');
 
         foreach ($this->grounds() as $name => $ground) {
             $this->assertLessThan(
@@ -128,6 +135,11 @@ final class TokenContrastTest extends TestCase
                 $this->contrastRatio($muted, $ground),
                 $this->contrastRatio($subtle, $ground),
                 "--text-subtle must stay dimmer than --text-muted on {$name}"
+            );
+            $this->assertLessThan(
+                $this->contrastRatio($text, $ground),
+                $this->contrastRatio($muted, $ground),
+                "--text-muted must stay dimmer than --text on {$name}"
             );
         }
     }
